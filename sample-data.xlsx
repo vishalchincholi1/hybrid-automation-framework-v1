@@ -1,0 +1,14 @@
+# This is a placeholder for the Excel file
+# In a real project, you would have an actual Excel file here
+# The Excel file would contain test data with columns like:
+# TestCase | Username | Password | ExpectedResult
+# TC001    | admin    | password123 | Success
+# TC002    | user     | userpass    | Success  
+# TC003    | invalid  | invalid     | Failure
+# TC004    |          | password    | Failure
+# TC005    | admin    |             | Failure
+
+# To create the actual Excel file, you can:
+# 1. Create a new Excel file named "LoginTestData.xlsx"
+# 2. Add the above data in the first sheet named "LoginData"
+# 3. Place it in the src/test/resources/testdata/ directory
