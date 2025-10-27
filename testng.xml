@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="HybridAutomationTestSuite" parallel="none" thread-count="3" verbose="1">
+    
+    <!-- Suite-level parameters -->
+    <parameter name="browser" value="chrome"/>
+    <parameter name="environment" value="dev"/>
+    <parameter name="headless" value="false"/>
+    
+    <!-- Test listeners for reporting and screenshots -->
+    <listeners>
+        <listener class-name="com.automation.listeners.TestListener"/>
+        <listener class-name="com.automation.listeners.ScreenshotListener"/>
+        <listener class-name="com.automation.listeners.RetryListener"/>
+    </listeners>
+    
+    <!-- Smoke Test Suite -->
+    <test name="SmokeTests" preserve-order="true">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.automation.tests.LoginTests">
+                <methods>
+                    <include name="testValidLogin"/>
+                    <include name="testPageElementsPresence"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Regression Test Suite -->
+    <test name="RegressionTests" preserve-order="true">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.automation.tests.LoginTests"/>
+            <!-- Add more test classes here -->
+        </classes>
+    </test>
+    
+    <!-- Data-Driven Test Suite -->
+    <test name="DataDrivenTests" preserve-order="true">
+        <classes>
+            <class name="com.automation.tests.LoginTests">
+                <methods>
+                    <include name="testLoginWithExcelData"/>
+                    <include name="testLoginWithHardcodedData"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Parallel Test Suite (for demonstration) -->
+    <test name="ParallelTests" parallel="methods" thread-count="2">
+        <classes>
+            <class name="com.automation.tests.LoginTests">
+                <methods>
+                    <include name="testValidLogin"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testEmptyUsername"/>
+                    <include name="testEmptyPassword"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+</suite>
